@@ -71,11 +71,15 @@ Make sure to include an address in the prompt if you are querying for informatio
                   type: "object",
                   properties: {
                     response: {
-                      type: ["string", "object"],
+                      oneOf: [
+                        { type: "string" },
+                        { type: "object" }
+                      ],
                       description: "The AI-generated response to the query",
                     },
                     isAdditionalDataRequired: {
-                      type: ["null", "object"],
+                      type: "object",
+                      nullable: true,
                       description:
                         "If additional data is required to answer the query, this field contains details about what is needed",
                     },
@@ -86,6 +90,7 @@ Make sure to include an address in the prompt if you are querying for informatio
                         "List of data sources used to generate the response (only included when include_data_sources input parameter is set to true)",
                     },
                   },
+                  required: ["response"],
                 },
               },
             },
