@@ -34,34 +34,29 @@ Make sure to include an address in the prompt if you are querying for informatio
   },
   paths: {
     "/api/tools/search": {
-      post: {
+      get: {
         operationId: "hiveSearch",
         summary: "Execute a Web3 or Blockchain search query",
         description:
           "Executes a search query using Hive Search API to retrieve Web3 or Blockchain information.",
-        requestBody: {
-          required: true,
-          content: {
-            "application/json": {
-              schema: {
-                type: "object",
-                properties: {
-                  prompt: {
-                    type: "string",
-                    description:
-                      "Natural Language Search Query to execute with Hive Search API.",
-                  },
-                  include_data_sources: {
-                    type: "boolean",
-                    description:
-                      "When set to true, the response will include the data sources used to generate the answer.",
-                  },
-                },
-                required: ["prompt"],
-              },
-            },
+        parameters: [
+          {
+            name: "prompt",
+            in: "query",
+            description:
+              "Natural Language Search Query to execute with Hive Search API.",
+            required: true,
+            schema: { type: "string" },
           },
-        },
+          {
+            name: "include_data_sources",
+            in: "query",
+            description:
+              "When set to true, the response will include the data sources used to generate the answer.",
+            required: false,
+            schema: { type: "boolean" },
+          },
+        ],
         responses: {
           "200": {
             description: "Successful response",
@@ -71,10 +66,7 @@ Make sure to include an address in the prompt if you are querying for informatio
                   type: "object",
                   properties: {
                     response: {
-                      oneOf: [
-                        { type: "string" },
-                        { type: "object" }
-                      ],
+                      oneOf: [{ type: "string" }, { type: "object" }],
                       description: "The AI-generated response to the query",
                     },
                     isAdditionalDataRequired: {

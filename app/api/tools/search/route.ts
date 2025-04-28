@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 const API_URL = "https://api.hiveintelligence.xyz/v1/search";
 const API_KEY = process.env.HIVE_API_KEY;
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   if (!API_KEY) {
     return NextResponse.json(
       { error: "Hive API key not configured" },
@@ -11,20 +11,22 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  let body: any;
-  try {
-    body = await req.json();
-    console.log("REQUEST BODY", body);
-  } catch (e) {
-    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
-  }
-
-  if (!body.prompt) {
+  const searchParams = req.nextUrl.searchParams;
+  const prompt = searchParams.get("prompt");
+  const includeDataSources = searchParams.get("include_data_sources");
+  if (!prompt) {
     return NextResponse.json(
-      { error: "Missing 'prompt' in request body" },
+      { error: "Missing 'prompt' in query parameters" },
       { status: 400 }
     );
   }
+
+  const payload = {
+    prompt,
+    include_data_sources: includeDataSources
+      ? Boolean(includeDataSources)
+      : undefined,
+  };
 
   const hiveRes = await fetch(API_URL, {
     method: "POST",
@@ -32,7 +34,7 @@ export async function POST(req: NextRequest) {
       Authorization: `Bearer ${API_KEY}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify(payload),
   });
 
   const data = await hiveRes.json();
