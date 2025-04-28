@@ -23,6 +23,8 @@ export const openapiSpec = {
 This assistant uses Hive Intelligence to:
 - Search for on-chain and off-chain blockchain data using natural language
 - Retrieve analytics, metrics, and summaries for Web3 protocols, tokens, and addresses
+
+Make sure to include an address in the prompt if you are querying for information about a specific address.
 `,
       categories: ["web3", "blockchain", "analytics"],
       chainIds: [1, 8453, 56, 137, 100, 42161, 10, 43114],
@@ -36,7 +38,7 @@ This assistant uses Hive Intelligence to:
         operationId: "hiveSearch",
         summary: "Execute a Web3 or Blockchain search query",
         description:
-          "Executes a search query using Hive Search API to retrieve Web3 or Blockchain information.  Include an address if querying for information about a specific address.",
+          "Executes a search query using Hive Search API to retrieve Web3 or Blockchain information.",
         requestBody: {
           required: true,
           content: {
@@ -47,7 +49,7 @@ This assistant uses Hive Intelligence to:
                   prompt: {
                     type: "string",
                     description:
-                      "Natural Language Search Query to execute with Hive Search API.  Include an address if querying for information about a specific address.",
+                      "Natural Language Search Query to execute with Hive Search API.",
                   },
                   include_data_sources: {
                     type: "boolean",
