@@ -8,7 +8,7 @@
         "next": "15.3.1",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "vercel-url": "0.2.6",
+        "vercel-url": "0.2.8",
       },
       "devDependencies": {
         "@scalar/api-reference": "^1.28.26",
@@ -628,7 +628,7 @@
 
     "uuid": ["uuid@9.0.1", "", { "bin": { "uuid": "dist/bin/uuid" } }, "sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA=="],
 
-    "vercel-url": ["vercel-url@0.2.6", "", {}, "sha512-2D6bksVmOouZLGhFeW9PN9g9rgG04aGNKyYJSeL+T92EdDgUTX6N2wzkoJuArpztq2Rg8t3fTJ7db2bCs5/4jw=="],
+    "vercel-url": ["vercel-url@0.2.8", "", {}, "sha512-0sa1u3QzWI/xmbtF2BC2DyXPwnAHOsz+gtFBzCut9ywr9LplWhspjp4vT5luFjQaakXp9M+966CjDPzA53cMug=="],
 
     "vfile": ["vfile@6.0.3", "", { "dependencies": { "@types/unist": "^3.0.0", "vfile-message": "^4.0.0" } }, "sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q=="],
 
